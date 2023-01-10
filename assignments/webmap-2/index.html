@@ -1,0 +1,771 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.25.2"/><style data-href="/methods-in-spatial-research-sp2023/styles.ddc2bd1ca55ebcf3b077.css" data-identity="gatsby-global-css">@import url(https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@400&display=swap);code[class*=language-],pre[class*=language-]{word-wrap:normal;color:#657b83;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:#073642}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:#fdf6e3}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#93a1a1}.token.punctuation{color:#586e75}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#268bd2}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string,.token.url{color:#2aa198}.token.entity{background:#eee8d5;color:#657b83}.token.atrule,.token.attr-value,.token.keyword{color:#859900}.token.class-name,.token.function{color:#b58900}.token.important,.token.regex,.token.variable{color:#cb4b16}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.layout-module--container--78b04{font-family:Karla,sans-serif;margin:auto;max-width:800px}.layout-module--heading--f158c{color:#030303}.layout-module--nav-links--1113b{display:flex;list-style:none;padding-left:0}.layout-module--nav-link-item--a5f0a{padding-right:2rem}.layout-module--nav-link-text--69cda{color:#000}.layout-module--site-title--e4dea{color:#000;font-size:1rem;font-weight:700;margin:2rem 0}a{color:#000}a:hover{background-color:#d9ff00}.layout-module--caption--95d12{font-size:.25rem}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="layout-module--container--78b04"><title>Webmaps Part 2 - Scrollytelling Map<!-- -->| <!-- -->A4407-sp2022</title><header class="layout-module--site-title--e4dea">A4407-sp2022</header><nav><ul class="layout-module--nav-links--1113b"><li class="layout-module--nav-link-item--a5f0a"><a class="layout-module--nav-link-text--69cda" href="/methods-in-spatial-research-sp2023/">Home</a></li><li class="layout-module--nav-link-item--a5f0a"><a class="layout-module--nav-link-text--69cda" href="/methods-in-spatial-research-sp2023/tutorials">Tutorials</a></li><li class="layout-module--nav-link-item--a5f0a"><a class="layout-module--nav-link-text--69cda" href="/methods-in-spatial-research-sp2023/assignments">Assignments</a></li><li class="layout-module--nav-link-item--a5f0a"><a class="layout-module--nav-link-text--69cda" href="/methods-in-spatial-research-sp2023/resources">Resources</a></li></ul></nav><main><h1 class="layout-module--heading--f158c">Webmaps Part 2 - Scrollytelling Map</h1><h1>Making a Scrollytelling map with Mapbox Storytelling</h1><p>Now that you have learned QGIS, Git, html, css, javascript and some Mapbox libraries, let&#x27;s make a custom story map using <a href="https://docs.mapbox.com/mapbox-gl-js/guides/">Mapbox GL JS</a> and <a href="https://github.com/russellgoldenberg/scrollama">Scrollarama</a>. </p><p>This is a format that has become exponentially more common over the past five years or so for telling stories through maps. While a number of newsrooms have used propietary tools built for this purpose for awhile, recently Mapbox implementation has lowered the barrier to entry a lot.  </p><p>The below animation is a fairly simple rendition of what this can look like, but they can easily get pretty immersive. See <a href="https://www.nytimes.com/interactive/2020/10/02/opinion/amazon-under-threat.html">this NYT interactive</a> for the insanely fancy, and <a href="https://www.washingtonpost.com/graphics/2020/climate-solutions/wyoming-wildlife-corridor/">this WaPo story</a> for a very clever use of a self-collected dataset to tell a much larger story.</p><p><img src="https://assets.website-files.com/5e871c608892778f95e77820/5e887e1306f6708ca4cb341c_5dc071f85102da6d50a33dcc_glaciers.gif" alt="Scrollytelling"/></p><h2>Setup</h2><h4>Create a Mapbox Studio account</h4><p>Because it reduces the complexity of our setup, we&#x27;ll be adding our data layers through <a href="https://studio.mapbox.com/">mapbox studio</a>. Make an account if you don&#x27;t have one already, or login if you do. Later on, we will style our data layers again in mapbox studio, and add them to our map using their <code>layer-id</code>.</p><p>While this method gets our maps up and running quicker, for those with a bit more experience and interested in a more flexible storytelling format, I recommend <a href="https://pointsunknown.nyc/web%20mapping/mapbox/2021/07/20/11A_MapboxStorytelling.html/">this tutorial</a> from the GSAPP course Points Unknown (I also recommend taking the course!) </p><h4>File Setup</h4><p>We&#x27;re going to build off of the <a href="https://centerforspatialresearch.github.io/methods-in-spatial-research-sp2022/tutorials/webmap-1">last tutorial</a> to build this, so make sure you have that up and running first, or download the completed repo <a href="https://drive.google.com/file/d/1y-UlR1s98gqxChyfWWo1EimCJ0ln4MXF/view?usp=sharing">here</a>.</p><p>We&#x27;ll start by creating a new repo called <code>webmap_2_storytelling</code>, cloning it to your local filesystem, copying over the contents of <code>webmap_1</code> into it, and starting a live server. If you have any trouble with this - refer to the beginning of the <a href="https://centerforspatialresearch.github.io/methods-in-spatial-research-sp2022/tutorials/webmap-1">previous tutorial</a>.</p><p>By now, you should have the same file contents and result as you did from the last tutorial</p><p><img src="images/158/webmap_2_01.png" alt="FileSetup"/></p><p>To start, we will edit our <code>index.html</code> to include the correct setup for mapbox, and set up our map in a <code>config.js</code> instead of the <code>map.js</code> we were using earlier. We will be taking this code from the official <a href="https://github.com/mapbox/storytelling">Mapbox Storytelling repo</a>.</p><p>It is important to note that if some of this is confusing, <strong>that is fine.</strong> using something copy pasted from the internet without fully understanding what it does is totally par for the course, especially when it comes to niche javascript libraries. </p><h4>Editing index.html</h4><p>Copy and paste the entirety of this into your index.html. If your curious, this code comes from the <code>src</code> &gt; <code>index.html</code> in the <a href="https://github.com/mapbox/storytelling">Mapbox Storytelling repo</a>:</p><pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&#x27;utf-8&#x27; /&gt;
+    &lt;title&gt;Mapbox Storytelling&lt;/title&gt;
+    &lt;meta name=&#x27;viewport&#x27; content=&#x27;initial-scale=1,maximum-scale=1,user-scalable=no&#x27; /&gt;
+    &lt;script src=&#x27;https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js&#x27;&gt;&lt;/script&gt;
+    &lt;link href=&#x27;https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css&#x27; rel=&#x27;stylesheet&#x27; /&gt;
+    &lt;script src=&quot;https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://unpkg.com/scrollama&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+        body {
+            margin:0;
+            padding:0;
+            font-family: sans-serif;
+        }
+        a, a:hover, a:visited {
+            color: #0071bc;
+        }
+        #map {
+            top:0;
+            height: 100vh;
+            width:100vw;
+            position: fixed;
+        }
+        #header {
+            margin: auto;
+            width: 100%;
+            position: relative;
+            z-index: 5;
+        }
+        #header h1, #header h2, #header p {
+            margin: 0;
+            padding: 2vh 2vw;
+            text-align: center;
+        }
+        #footer {
+            width: 100%;
+            min-height: 5vh;
+            padding-top: 2vh;
+            padding-bottom: 2vh;
+            text-align: center;
+            line-height: 25px;
+            font-size: 13px;
+            position: relative;
+            z-index: 5;
+        }
+        #features {
+            padding-top: 10vh;
+            padding-bottom: 10vh;
+        }
+        .hidden {
+            visibility: hidden;
+        }
+        .centered {
+            width: 50vw;
+            margin: 0 auto;
+        }
+        .lefty {
+            width: 33vw;
+            margin-left: 5vw;
+        }
+        .righty {
+            width: 33vw;
+            margin-left: 62vw;
+        }
+        .fully {
+            width: 100%;
+            margin: auto;
+        }
+        .light {
+            color: #444;
+            background-color: #fafafa;
+        }
+        .dark {
+            color: #fafafa;
+            background-color: #444;
+        }
+        .step {
+            padding-bottom: 50vh;
+            /* margin-bottom: 10vh; */
+            opacity: 0.25;
+        }
+        .step.active {
+            opacity: 0.9;
+        }
+
+        .step div {
+            padding:  25px 50px;
+            line-height: 25px;
+            font-size: 13px;
+        }
+
+        .step img {
+            width: 100%;
+        }
+
+        @media (max-width: 750px) {
+            .centered, .lefty, .righty, .fully {
+                width: 90vw;
+                margin: 0 auto;
+            }
+        }
+
+        /* Fix issue on mobile browser where scroll breaks  */
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan, 
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+            touch-action: unset;
+        }
+
+        &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;story&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;./config.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+var layerTypes = {
+    &#x27;fill&#x27;: [&#x27;fill-opacity&#x27;],
+    &#x27;line&#x27;: [&#x27;line-opacity&#x27;],
+    &#x27;circle&#x27;: [&#x27;circle-opacity&#x27;, &#x27;circle-stroke-opacity&#x27;],
+    &#x27;symbol&#x27;: [&#x27;icon-opacity&#x27;, &#x27;text-opacity&#x27;],
+    &#x27;raster&#x27;: [&#x27;raster-opacity&#x27;],
+    &#x27;fill-extrusion&#x27;: [&#x27;fill-extrusion-opacity&#x27;],
+    &#x27;heatmap&#x27;: [&#x27;heatmap-opacity&#x27;]
+}
+
+var alignments = {
+    &#x27;left&#x27;: &#x27;lefty&#x27;,
+    &#x27;center&#x27;: &#x27;centered&#x27;,
+    &#x27;right&#x27;: &#x27;righty&#x27;,
+    &#x27;full&#x27;: &#x27;fully&#x27;
+}
+
+function getLayerPaintType(layer) {
+    var layerType = map.getLayer(layer).type;
+    return layerTypes[layerType];
+}
+
+function setLayerOpacity(layer) {
+    var paintProps = getLayerPaintType(layer.layer);
+    paintProps.forEach(function(prop) {
+        var options = {};
+        if (layer.duration) {
+            var transitionProp = prop + &quot;-transition&quot;;
+            options = { &quot;duration&quot;: layer.duration };
+            map.setPaintProperty(layer.layer, transitionProp, options);
+        }
+        map.setPaintProperty(layer.layer, prop, layer.opacity, options);
+    });
+}
+
+var story = document.getElementById(&#x27;story&#x27;);
+var features = document.createElement(&#x27;div&#x27;);
+features.setAttribute(&#x27;id&#x27;, &#x27;features&#x27;);
+
+var header = document.createElement(&#x27;div&#x27;);
+
+if (config.title) {
+    var titleText = document.createElement(&#x27;h1&#x27;);
+    titleText.innerText = config.title;
+    header.appendChild(titleText);
+}
+
+if (config.subtitle) {
+    var subtitleText = document.createElement(&#x27;h2&#x27;);
+    subtitleText.innerText = config.subtitle;
+    header.appendChild(subtitleText);
+}
+
+if (config.byline) {
+    var bylineText = document.createElement(&#x27;p&#x27;);
+    bylineText.innerText = config.byline;
+    header.appendChild(bylineText);
+}
+
+if (header.innerText.length &gt; 0) {
+    header.classList.add(config.theme);
+    header.setAttribute(&#x27;id&#x27;, &#x27;header&#x27;);
+    story.appendChild(header);
+}
+
+config.chapters.forEach((record, idx) =&gt; {
+    var container = document.createElement(&#x27;div&#x27;);
+    var chapter = document.createElement(&#x27;div&#x27;);
+
+    if (record.title) {
+        var title = document.createElement(&#x27;h3&#x27;);
+        title.innerText = record.title;
+        chapter.appendChild(title);
+    }
+
+    if (record.image) {
+        var image = new Image();
+        image.src = record.image;
+        chapter.appendChild(image);
+    }
+
+    if (record.description) {
+        var story = document.createElement(&#x27;p&#x27;);
+        story.innerHTML = record.description;
+        chapter.appendChild(story);
+    }
+
+    container.setAttribute(&#x27;id&#x27;, record.id);
+    container.classList.add(&#x27;step&#x27;);
+    if (idx === 0) {
+        container.classList.add(&#x27;active&#x27;);
+    }
+
+    chapter.classList.add(config.theme);
+    container.appendChild(chapter);
+    container.classList.add(alignments[record.alignment] || &#x27;centered&#x27;);
+    if (record.hidden) {
+        container.classList.add(&#x27;hidden&#x27;);
+    }
+    features.appendChild(container);
+});
+
+story.appendChild(features);
+
+var footer = document.createElement(&#x27;div&#x27;);
+
+if (config.footer) {
+    var footerText = document.createElement(&#x27;p&#x27;);
+    footerText.innerHTML = config.footer;
+    footer.appendChild(footerText);
+}
+
+if (footer.innerText.length &gt; 0) {
+    footer.classList.add(config.theme);
+    footer.setAttribute(&#x27;id&#x27;, &#x27;footer&#x27;);
+    story.appendChild(footer);
+}
+
+mapboxgl.accessToken = config.accessToken;
+
+const transformRequest = (url) =&gt; {
+    const hasQuery = url.indexOf(&quot;?&quot;) !== -1;
+    const suffix = hasQuery ? &quot;&amp;pluginName=scrollytellingV2&quot; : &quot;?pluginName=scrollytellingV2&quot;;
+    return {
+      url: url + suffix
+    }
+}
+
+var map = new mapboxgl.Map({
+    container: &#x27;map&#x27;,
+    style: config.style,
+    center: config.chapters[0].location.center,
+    zoom: config.chapters[0].location.zoom,
+    bearing: config.chapters[0].location.bearing,
+    pitch: config.chapters[0].location.pitch,
+    interactive: false,
+    transformRequest: transformRequest
+});
+
+if (config.showMarkers) {
+    var marker = new mapboxgl.Marker({ color: config.markerColor });
+    marker.setLngLat(config.chapters[0].location.center).addTo(map);
+}
+
+// instantiate the scrollama
+var scroller = scrollama();
+
+map.on(&quot;load&quot;, function() {
+    if (config.use3dTerrain) {
+        map.addSource(&#x27;mapbox-dem&#x27;, {
+            &#x27;type&#x27;: &#x27;raster-dem&#x27;,
+            &#x27;url&#x27;: &#x27;mapbox://mapbox.mapbox-terrain-dem-v1&#x27;,
+            &#x27;tileSize&#x27;: 512,
+            &#x27;maxzoom&#x27;: 14
+        });
+        // add the DEM source as a terrain layer with exaggerated height
+        map.setTerrain({ &#x27;source&#x27;: &#x27;mapbox-dem&#x27;, &#x27;exaggeration&#x27;: 1.5 });
+
+        // add a sky layer that will show when the map is highly pitched
+        map.addLayer({
+            &#x27;id&#x27;: &#x27;sky&#x27;,
+            &#x27;type&#x27;: &#x27;sky&#x27;,
+            &#x27;paint&#x27;: {
+                &#x27;sky-type&#x27;: &#x27;atmosphere&#x27;,
+                &#x27;sky-atmosphere-sun&#x27;: [0.0, 0.0],
+                &#x27;sky-atmosphere-sun-intensity&#x27;: 15
+            }
+        });
+    };
+
+    // setup the instance, pass callback functions
+    scroller
+    .setup({
+        step: &#x27;.step&#x27;,
+        offset: 0.5,
+        progress: true
+    })
+    .onStepEnter(response =&gt; {
+        var chapter = config.chapters.find(chap =&gt; chap.id === response.element.id);
+        response.element.classList.add(&#x27;active&#x27;);
+        map[chapter.mapAnimation || &#x27;flyTo&#x27;](chapter.location);
+        if (config.showMarkers) {
+            marker.setLngLat(chapter.location.center);
+        }
+        if (chapter.onChapterEnter.length &gt; 0) {
+            chapter.onChapterEnter.forEach(setLayerOpacity);
+        }
+        if (chapter.callback) {
+            window[chapter.callback]();
+        }
+        if (chapter.rotateAnimation) {
+            map.once(&#x27;moveend&#x27;, function() {
+                const rotateNumber = map.getBearing();
+                map.rotateTo(rotateNumber + 90, {
+                    duration: 24000, easing: function (t) {
+                        return t;
+                    }
+                });
+            });
+        }
+    })
+    .onStepExit(response =&gt; {
+        var chapter = config.chapters.find(chap =&gt; chap.id === response.element.id);
+        response.element.classList.remove(&#x27;active&#x27;);
+        if (chapter.onChapterExit.length &gt; 0) {
+            chapter.onChapterExit.forEach(setLayerOpacity);
+        }
+    });
+});
+
+// setup resize event
+window.addEventListener(&#x27;resize&#x27;, scroller.resize);
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>Here we just established all of the overhead for the storymap. Once you are done with your map, if you want to change how any of the constituent parts of it look, like the title or chapter text boxes, you will do so in your index.html.</p><h4>Making a config.js</h4><p>In your <code>webmap_2</code> directory, make a file called <code>config.js</code>, and open it in your text editor. Copy all of this code into it, this is from src &gt; config.js.template at the same Mapbox Repo.</p><pre><code class="language-javascript">var config = {
+    style: &#x27;mapbox://styles/mapbox/streets-v11&#x27;,
+    accessToken: &#x27;YOUR_ACCESS_TOKEN&#x27;,
+    showMarkers: true,
+    markerColor: &#x27;#3FB1CE&#x27;,
+    theme: &#x27;light&#x27;,
+    use3dTerrain: false,
+    title: &#x27;The Title Text of this Story&#x27;,
+    subtitle: &#x27;A descriptive and interesting subtitle to draw in the reader&#x27;,
+    byline: &#x27;By a Digital Storyteller&#x27;,
+    footer: &#x27;Source: source citations, etc.&#x27;,
+    chapters: [
+        {
+            id: &#x27;slug-style-id&#x27;,
+            alignment: &#x27;left&#x27;,
+            hidden: false,
+            title: &#x27;Display Title&#x27;,
+            image: &#x27;./path/to/image/source.png&#x27;,
+            description: &#x27;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&#x27;,
+            location: {
+                center: [-122.418398, 37.759483],
+                zoom: 8.5,
+                pitch: 60,
+                bearing: 0
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [
+                // {
+                //     layer: &#x27;layer-name&#x27;,
+                //     opacity: 1,
+                //     duration: 5000
+                // }
+            ],
+            onChapterExit: [
+                // {
+                //     layer: &#x27;layer-name&#x27;,
+                //     opacity: 0
+                // }
+            ]
+        },
+        {
+            id: &#x27;other-identifier&#x27;,
+            alignment: &#x27;right&#x27;,
+            hidden: false,
+            title: &#x27;Second Title&#x27;,
+            image: &#x27;./path/to/image/source.png&#x27;,
+            description: &#x27;Copy these sections to add to your story.&#x27;,
+            location: {
+                center: [-77.020636, 38.886900],
+                zoom: 8.5,
+                pitch: 60,
+                bearing: -43.2
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [],
+            onChapterExit: []
+        }`
+    ]
+};
+</code></pre><p>With those two added, you&#x27;ll want to add your <code>accessToken</code> where it currently says <code>accessToken: &#x27;YOUR_ACCESS_TOKEN&#x27;,</code>.  </p><p>Once you do that, save and possibly refresh, you&#x27;re all set up! Your <code>map.js</code> is no longer of any use to you, and you can feel free to delete it if you would like to keep your repo clean. You should have a template story with some basic animation in your browser, which looks something like this:</p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:800px">
+      <span class="gatsby-resp-image-background-image" style="padding-bottom:90.49999999999999%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACxklEQVQ4y32T6XLiQAyE/f7vlWtzACEhmwsb8DH3jPGBbUj1loRJJdna/dHMIFvfSK1xlOUFpFSQSkMbi+UqRbzKkKxzrFOBVSp4/ap4nX3Te5Li98uSc6LdbodhGFA3DZq2RT8M2B8OqOsaQkgorSGlhFIKSmlW1/UY9nv0fc/qug5t26JpGkT0Q8GBNAygAwhWhvAJkkJACMH/i6JAVVX8DoEoh/IPhwOMMYj6rsPHxwH7/Z5FL+d5ziBnLdtBMIppbWCMhdaaY03Tcs4J6JxDlAkJoQ2s99i1LdpdyyeTmraB9x7WWoQQONb3R1GLXbfjtW0b7HYtdxCd3d7h7G6C6eIJQhZwTsMYBWs1lJYs7x2sMwjBoapKbLcBzltsqxJl6WGsgXMWWbZBdDWdIS0E1lmOQqrRnwpNU6MsA6w18N4yUCrJsCO05BiBQulR11sIkSP6NbuHDyW3VVc1mubYBvlCUKUkfHDIRQ5jNUO5OgZaOO9437Y1pBSIrmb3cD6M5ksWDcD7gG215fZfkgSTxRMDCylYQgqG51IwOASPvMjGCn1AluVI04zXTZrBWsdWTB4fMXl+xfl8wQDyjLwkALXqg+cOSEqrI5CS4zhBkqxYtA+hZCANLBcF3pMEN/MHvCYxpBLsHbVOA6MDyFtqnYHbbQVNn94oqnjoB+RS4WIyxfNyycOhaa7SDdZZynttNHvsxhtA8OhyOsNyvUG8SXklJWmGVZrh6e0d9PzX/ZwnSm1RstaKYVQl34TxGdkRUQWk86+6m7AuRhgNLkk3x+tjNQ+H2uX7N7ZNB1AXDLyeP3Div0RAqnTx+saJBObhEHT8CEI4DoiBp6STfsJOe6r4brHAW5LgLY7xGseQ+jh5x5fcfAf+r8LT/nJ2z2Baz8fcZLPmqulTjM5ubnH1xau/wBQb158HXVPOdIbb+cOnh38AWyAveNrLA5IAAAAASUVORK5CYII=&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="MapboxTemplate" title="MapboxTemplate" src="/methods-in-spatial-research-sp2023/static/efdb65e9be21a3a7bd8c1b435c8fb28e/5a190/webmap_2_02.png" srcSet="/methods-in-spatial-research-sp2023/static/efdb65e9be21a3a7bd8c1b435c8fb28e/772e8/webmap_2_02.png 200w,/methods-in-spatial-research-sp2023/static/efdb65e9be21a3a7bd8c1b435c8fb28e/e17e5/webmap_2_02.png 400w,/methods-in-spatial-research-sp2023/static/efdb65e9be21a3a7bd8c1b435c8fb28e/5a190/webmap_2_02.png 800w,/methods-in-spatial-research-sp2023/static/efdb65e9be21a3a7bd8c1b435c8fb28e/c1b63/webmap_2_02.png 1200w,/methods-in-spatial-research-sp2023/static/efdb65e9be21a3a7bd8c1b435c8fb28e/7a4b2/webmap_2_02.png 1240w" sizes="(max-width: 800px) 100vw, 800px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0" loading="lazy" decoding="async"/>
+    </span></p><h2>Adding your Content</h2><h4>Creating a Style and Adding it</h4><p>Next we&#x27;ll start adding our own content to the map - and by this I mean our datasets. For this we&#x27;ll go back to <a href="https://studio.mapbox.com/">Mapbox Studio</a>.</p><p>In Mapbox Studio, click &quot;New Style&quot; and select your style. I&#x27;ll go with <code>Monochrome</code> and the <code>Light</code> variation. One you make the map go ahead and give it a name, we&#x27;ll only need one for the whole project, so I would name it the same thing, <code>webmap_2_storytelling</code>.</p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:800px">
+      <span class="gatsby-resp-image-background-image" style="padding-bottom:78.5%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADZUlEQVQ4y3WTy08bVxTG58/rrlJXUXftqotIXbRSW6UCkighGENejduCoIu2WSQlDYQC5hVIkdKW+onBYHv8AA/YHns8Y3s8Y3tmftVcpyVSlSt9OtI5d777ne+ckQKP5gmGfmAyNM/9mTkezM4L3J+5xL+5y9oc09/OCEyFvicY+o7AozmmQrNIp0qNbKGMclGjqRs0mk20ZhPD0GkZOrrRpKkPc01dp1AqIReLZOQ8cqFIPJUimkhQPFN4vhpGMtuntPUytm3z9lE7UG15tLrQ64P3Jq9pQ2LdMJALBRKpFCfZLLqhs7Gzi5SrlMieJrEsE7NrMXAG9Acup3Wb4wubRgvMLli2x8CBSrWGWq/T0DTSmQzRRJJcPi86+G1jEylSKrF5ckZFMzBNE9vu4bgO8VKUg7MEaqNGx+xidrv0+n1qqsp5pUJVVcnKsrDAJ/MfWNt+iVTKHxA9OeG8oWMYBpYgdImmo7xO7lGt17B7fUHmeh7K+Tm5QkGQ+F6m0mlOy2XqWoPw9g7S1c8+IRSaFBeNVlt42R8M+OrmNFc++pRUOoNl20Kh4ziUFYVIPE42nxfEycND8sUirXaL8MsdJLmY50wp0+qYgsj/yHVdimWF40yOrmXjOC79gYPnIR6OJZOCyG/dV3eYTtNoamzu/o7kT85vqdPpYFmWMN7xeOfxV8gfhE/o++kT7sdiQvHq1jaSapiUVR3dGtDzwO3rOHadfleFgcZR1mBvX+OPmMafMYNKTSeROhDr4iv0LfAV+14+W15BsrU2lYJCtaDQrjWx2lWaqox6kQVHY+TWY9774Doffhzk/SvjJA9lDo+PBIGYdq3GmaKQyeV4sriE5Hba2I06Pa3BoGXQtV1My6VjOVh9kOUTIpHXRCJ/kUj8TaVaIX4wVOgvtr+TtXpdEC/6f0rP8xgADgyj5wzhung4WAN4FYetfdiNwXnN5OiNwoycw2i10HRdbMfWqz2kp0vLLK6tCyyFNwRerG/wQsRNnq+u82TJR1jEheU1fnq6wM+/PBNYWF7h15U1FtfCzP74GOnql9f44ua4wLXbE3w9HmDkTvASE0HGAn6cZOROgNFAkLHJ6f8wOjHF6MTw3o3gXaTPx25wPXiPEb8QmObW3QeM3//mf7h97+FbtYfvvPMPloZNlXUyuq8AAAAASUVORK5CYII=&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="MbStudioStyle" title="MbStudioStyle" src="/methods-in-spatial-research-sp2023/static/309cf21cbb941b0e0216b5ad30696e99/5a190/webmap_2_03.png" srcSet="/methods-in-spatial-research-sp2023/static/309cf21cbb941b0e0216b5ad30696e99/772e8/webmap_2_03.png 200w,/methods-in-spatial-research-sp2023/static/309cf21cbb941b0e0216b5ad30696e99/e17e5/webmap_2_03.png 400w,/methods-in-spatial-research-sp2023/static/309cf21cbb941b0e0216b5ad30696e99/5a190/webmap_2_03.png 800w,/methods-in-spatial-research-sp2023/static/309cf21cbb941b0e0216b5ad30696e99/c1b63/webmap_2_03.png 1200w,/methods-in-spatial-research-sp2023/static/309cf21cbb941b0e0216b5ad30696e99/d9b5d/webmap_2_03.png 1224w" sizes="(max-width: 800px) 100vw, 800px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0" loading="lazy" decoding="async"/>
+    </span></p><p>Now that we have our base style, let&#x27;s go ahead and add it to our storymap. On the top right, click <code>Publish</code>, click through that menu, and then click the <code>Share</code> button immediately to it&#x27;s left. There you can copy the <code>Style URL</code> for your map, and then put it in your config.js.</p><p>Now, any style changes that you make on your mapbox studio map will show in your storymap. Take note of the menus description of the difference between <code>draft</code> and <code>production</code> share urls - if you don&#x27;t see change reflected right away on your map, that may be why. If you haven&#x27;t done so yet, copy over your <code>Access Token</code> too. This should be the same one as you made earlier. </p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:800px">
+      <span class="gatsby-resp-image-background-image" style="padding-bottom:63%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADIUlEQVQ4y1WT7WtbZRjG8xcIIvrBT35QBNG/wi+KMNFBh9QhZVTXrejEZknatY3rmixpWjfrai2MoUwQQRgT3IugY34SS5ekadK89iRpcnJec/JykjZvP8lTR/HAzfnwwO++nuu6Hseb74/w1sgo4587OTvlZtLtwhO8z4TnFuddF5n0zDLpnuHcRY84n3B6xJydcvHZ9BwXLs1zanyCk2PjnBz7GMcXs158175G0XVUo0qv12L9Z5u/trpAH92q02i1ODg4wLZtzGqVTC5HOptF03Vq9Trf3LzFfHCZxWurOM45PcwHlkhmc2SkPJk9iWK5RH6/QDafJ1coYlgWumlStSykQoF/njxhMxwmJ0kUSyUCqzdwL/iYC4RwTLqm8QZDZAoSRq2GYdWwGg0ati2m2WrTbLVQNA1V0wRgZ3eXsiyLBbKi4L++ytT8ZWZ8gafAZWRVxarXOex06fcHDAYD+oMBw6/RbJAvFoXKITCRSrFfLoslxXKZ0I11prwLQqUAfhlcRtV0mrYtPNF0g4qqYZoaKalFIl1lOxYmX9ynXKkQjceJ7uxQUVVUXeer9Q3cV/zMXl06vrJVqwMD8iWZQkkW4GqtRvuwh25U2YpECMdiJDMZ4V0imUSuVMTy0Np3uC4vHgOFQl2n3W4TT++RlopH3tlNFOOQ/L5JJHYEHIYyXBZLJMQMVa58u4HTe4VL/uCxwqGaTqeLadmUKyoluUJFkUlLFlmpSmQ7zFYkKuqiqCqRWEwkvR1PCKBn8Spz/1Oo6aJnimrQaNoilF6vL0KxLJNYPEEqk6Uky8LrYTjDPsaTSYKra0z7Ake1OT8ELi2jGQYpqUit3hBJd7o92ocdev0+zabNL3fv8P1Pt7n74CH3//iT3x895s5v9/j1wUNCa+t4noZyBFzBrFoCNPwrmo6saBimSmS3iVTqcuL0BV54/QTPvPQKz778Gs+/+gaO515k5MwnbPzwI07vwn8eumeY9QeFF3v5AtF4gs1whM1wVARx71Gax39nmPbfZvTTm7zzwYe8e3qM9z46w9unRllcuS6enmvBJ4r9L40NRV2BSe9MAAAAAElFTkSuQmCC&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="StyleUrl" title="StyleUrl" src="/methods-in-spatial-research-sp2023/static/3f9a98388d1d92108e01194a01a59fdd/5a190/webmap_2_04.png" srcSet="/methods-in-spatial-research-sp2023/static/3f9a98388d1d92108e01194a01a59fdd/772e8/webmap_2_04.png 200w,/methods-in-spatial-research-sp2023/static/3f9a98388d1d92108e01194a01a59fdd/e17e5/webmap_2_04.png 400w,/methods-in-spatial-research-sp2023/static/3f9a98388d1d92108e01194a01a59fdd/5a190/webmap_2_04.png 800w,/methods-in-spatial-research-sp2023/static/3f9a98388d1d92108e01194a01a59fdd/1132d/webmap_2_04.png 1158w" sizes="(max-width: 800px) 100vw, 800px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0" loading="lazy" decoding="async"/>
+    </span></p><h4>Adding and Styling data in Mapbox Studio</h4><p>Let&#x27;s add the data we used in the previous tutorial. Tab over to the <code>Layers</code> menu on the left-hand toolbox, and hit the <code>plus</code> icon. In the next menu hit <code>Source</code> and then <code>Upload Data</code>. Upload our <code>blocks_joined_trees_um.gejson</code> dataset.</p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:800px">
+      <span class="gatsby-resp-image-background-image" style="padding-bottom:37.5%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABxUlEQVQY02PQd3AxdHQ3cHDVtXPStXNWs7BVNbdRs7BVNLbgkVflklHikVfllFHilFbklFLgkJTjlJLnlpLnlFIQVFRlKGvqqGztrGjtzKqsK25ore3sruvsae6bmJRfZOHmeeb8xeOnz1y5duPO3Xs3b9++efv2rdu3b9669eDho227djKUNHVUtHZVtnYXNrSVtXRWtnXWdvZ0TJ6WnF9s5uTy9du3j5+/fP3+/c/fv/9h4C+Yfe3mLYaa9u76rt7m3gnNfROa+yZWtnVWtXW1TpicUlBs4uD89du3D5+/vP3w8f3HTz9//frx8+ePXz+///j+59+/S1evMVS1ddW0dzd299d39TX29Df1Tmjs6e+YPC2loNjY3vHX798Qq0C2f/9678nfjfv/v/sAsvnK9RsgzfWdvU1gbRAE1VxYYuLo+unLl6/fvn3++vXzl29fvn57//Hrm/c/vnz7+f///4tXrjJUtXY2dPc1w3TCNE9NKSwxd/F69OzZzbv37z1+df/x46cvX7588+rthw8fvvz6+ff/+cuXGSqxaW6bOCW7vEpcTccjJMI7PNozLNozNNIrLMo7PNorDMQNjI1x9vEFAKZEH1hcA7MsAAAAAElFTkSuQmCC&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="TilesetID" title="TilesetID" src="/methods-in-spatial-research-sp2023/static/118a05f0b778e6fdf9e7ce416df321e4/5a190/webmap_2_05.png" srcSet="/methods-in-spatial-research-sp2023/static/118a05f0b778e6fdf9e7ce416df321e4/772e8/webmap_2_05.png 200w,/methods-in-spatial-research-sp2023/static/118a05f0b778e6fdf9e7ce416df321e4/e17e5/webmap_2_05.png 400w,/methods-in-spatial-research-sp2023/static/118a05f0b778e6fdf9e7ce416df321e4/5a190/webmap_2_05.png 800w,/methods-in-spatial-research-sp2023/static/118a05f0b778e6fdf9e7ce416df321e4/c1b63/webmap_2_05.png 1200w,/methods-in-spatial-research-sp2023/static/118a05f0b778e6fdf9e7ce416df321e4/11a8f/webmap_2_05.png 1272w" sizes="(max-width: 800px) 100vw, 800px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0" loading="lazy" decoding="async"/>
+    </span></p><p>You should see the dataset being uploading in the bottom right-hand corner. Once it is done, enter the url under <code>Add Source by ID</code>, or by searching for it under <code>Your Sources.</code> If it doesn&#x27;t work or you can&#x27;t find it, give it a second until it is done processing. If you pan over to NYC, you should see the footprint of your dataset there.</p><p>Once your dataset is added as a layer, click back onto the <code>Style</code> menu for that layer, and click Color. Select <code>Style Across Data Range</code> in the menu, and then a pop-up will ask which variable in the data range, select <code>avg_diamet</code>, or however you have the variable named. </p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:800px">
+      <span class="gatsby-resp-image-background-image" style="padding-bottom:77%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADHUlEQVQ4y12SS28cVRCF+z/wA7xjmR0geeEFYC/s8Aoj/CAZx0hEYAMJIogtv4ENKySELFYRUpCjLFggNqCASTwe28Pgxzw8z+6+t999uz2PD907thVT0pGuurpOnTpV1u1PP2fpzjorH33CrfXPKG7cY/HDj3mn+AFvF9d469Yac4Ul5hdvsrBcZGFllesrq7zx/ipv3rzN9ZUic4VlXn93kdduvIfVdT1UdobKz7iIWGU0ug4dRyKCkDDL0dnBeMwIGI5GKJWiMoVSiuNajcPjY6qHh1gPHv3C7zsVnpSrPK0cUam1+fWPbbZ+2+bPSoNW8xR7b4/Rzg6VvSodVxKEIY7r4gcBRycn/F0q8axc5unuLlbflbRt18CWPlGqcKRHz3HJx2N++uFHvnt1ltLL12hvl5BqgBASISfY3d+ntLd3CcuWHq2eTbvv0HMFQRzjBQGOFGb8b7/5mmuvvEjhhZc4evKXGd8VkiiKqDeb7JTLVwn9KMb1fFw/MEiUIohiurbNcAQPH37PjS/vsLb0FUcHVfw4IQgjM3L54OAK2UG1iqVV1dtdo7LrCKI0pXHaotFuk52dUWt2+Kdc4d9aFTcIzPL0BHoBF+qe7e4askePH2MJP0SPLfyAKEkZDIc0Wy3avZ4hdDyfluPS6rt0bNd8cz2Pw3qdk3qdo1rNIB8MWFpexrKFx2nPNv7pE0mzzCxG+D5RkuCFEV3HRf+n3yrPcaTECQLSVJGcQ8f8/PxkKbqzLtAKtQI/ivDCkDhNzZK0t2GcGH91Q1sIUpUxBkajEcPhyEw2OzuLJf2QnivpC4kXhKgsnyDPTLEjfQMZTBoYhUIgpCDLcsZjDLnOzczMYGl1tVbX+BinEwUaWo3ZuN5qFBs8T9jtS6SfkCpFGEUmNzc3h+WHIcLziZOERBdk+TmpuiTVatV5kwtCV4SofMTzsbCwgKUNb7S7NDs9OrZz6dMFmVZ98dbQHnf6fZqtU8r7+3xx/z53795jfWODqakpLO2N6wXmuPWR64IrhP9roPOnnY456p+3tigUCmxubjI9PY1lWfwHTX8gILWKIj0AAAAASUVORK5CYII=&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="DataRange" title="DataRange" src="/methods-in-spatial-research-sp2023/static/d35f96f387fbe6d69b23d2ac1f6e7dd8/5a190/webmap_2_06.png" srcSet="/methods-in-spatial-research-sp2023/static/d35f96f387fbe6d69b23d2ac1f6e7dd8/772e8/webmap_2_06.png 200w,/methods-in-spatial-research-sp2023/static/d35f96f387fbe6d69b23d2ac1f6e7dd8/e17e5/webmap_2_06.png 400w,/methods-in-spatial-research-sp2023/static/d35f96f387fbe6d69b23d2ac1f6e7dd8/5a190/webmap_2_06.png 800w,/methods-in-spatial-research-sp2023/static/d35f96f387fbe6d69b23d2ac1f6e7dd8/90712/webmap_2_06.png 882w" sizes="(max-width: 800px) 100vw, 800px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0" loading="lazy" decoding="async"/>
+    </span></p><p>Now, in a very similar fashion to QGIS, we will style the data as a gradient from small to large average radius per block. Select <code>+ Add another stop</code> until we have five - you&#x27;ll notice that the radius will already be determined based on the number of stops and the <code>linear</code> rate of change we have selected above. Now that we have those, let&#x27;s select our colors. I will use <a href="https://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=5">ColorBrewer2</a> again.</p><p>After we have our stops and colors added, lets drag our layer down so it is only above the <code>Land, water &amp; sky</code> layers, so the other map data will be on top of the blocks. Lastly, you may notice that there are some black polygons left, if you remember in the last tutorial, we filtered these out by catching them with a <code>null</code> filter. However (to my knowledge) there is not a way of doing this in Mapbox Studio.
+While it will work for now, this means that for your own projects, you should filter out the <code>null</code> values when in QGIS before exporting, so you don&#x27;t have to deal with that styling issue here.</p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:800px">
+      <span class="gatsby-resp-image-background-image" style="padding-bottom:64.99999999999999%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADMElEQVQ4yz2S3U9bZRzHz1+jEZ2XmjCouM0Y42vmYpZ4651Xu9Wp8WJ6semMG4lzJsbNLDNmAgJDDNKtFNpCGW2hUChd387bc17bc/pCC/Sj55D4JL88vzzJ88n3+/39pHPvXyTy9nnOnf+A1y5c5NX3LjD8xjuMvPkuL7/+FqdGz/Bi5CynImd5YfQMQ8OvMHR6jKHhMZ55aYRnT4/wfGSM50YjYUlbuyWK5RpVWUXWBBVZZTWbJ53Lk93eYadYoiZrCMNmv1IlnkySSKeJJ5LMLM6SKMdJV1IslaL8tTuLpAgLu+HhtzsMANP1iG0UeFIsY3sNKmaNLW2XVHWTsiaztb3NTnGPBw/+IF6I4mKidCtsGKv8Lc8gmY5LXTdQDYuG5+M2PVTDxO+0MR0HxdARDQu9aVNTVbL5PLFYnB9/+YHv71zn19/vEtuKklITTJcmkIwAqBnIwsR0G3jtNpbjctDvowqBMC1C6QMQlsVmbouvbl7j26nvkP0K129/w/1H93hkzDPzdArJbjTRLYfgDmCBQlnT6fZ6oTrbdQnO0fExTd/nz6lpPrp5ifnSPJe//JRNNcN+t8BcdZqctXECFLaD0/ToHx5iWBb75TK9w0Mqej1UOxgMQqDjuFxdHOfG2i0Kfo5bE+PEMlGqnRJ5O0tU/gdJWE6YYWC33e3it9vophX2u0oZy3EYhJ5hTcnyyfIVcuIJq8YykzuTfLF4hYQSR/VrpNUUkm7Z1DQR2g4grU6HhueF/XathGk7HA9OgFl9h4n9STLGGjF1gYeVOT5LfE1cjZJUlikahWDKjXDCTb/FQa8XDqNzcBCW43lYbpNmq0W/f4TwBVkzTUxbICVijGd+4rfiffJOhnV1lYy+jlSqa+xVFWRhUQ92sumHsEBhANNMG0WY+K0OVstmQ6yRM9PMlR9ydf0GSTV28iY2WFEfIz2taxTKdfYqMlXNwPVa/wODXAMHQa7dbg/hmyzri1yOXePD2UshMKXHyZhpVsUKS7UoUvBJN20M2wlBgeUAFgKdBsGeNnyffu8Ipamwojzm5817fLzwOROlSZbkRZL1Fda0Fab/28N/AQGffUI5pIMuAAAAAElFTkSuQmCC&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="BLOCKSTYLE" title="BLOCKSTYLE" src="/methods-in-spatial-research-sp2023/static/66a0b0adbe304d1af3cf7c0cf593f797/5a190/webmap_2_07.png" srcSet="/methods-in-spatial-research-sp2023/static/66a0b0adbe304d1af3cf7c0cf593f797/772e8/webmap_2_07.png 200w,/methods-in-spatial-research-sp2023/static/66a0b0adbe304d1af3cf7c0cf593f797/e17e5/webmap_2_07.png 400w,/methods-in-spatial-research-sp2023/static/66a0b0adbe304d1af3cf7c0cf593f797/5a190/webmap_2_07.png 800w,/methods-in-spatial-research-sp2023/static/66a0b0adbe304d1af3cf7c0cf593f797/f4281/webmap_2_07.png 1016w" sizes="(max-width: 800px) 100vw, 800px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0" loading="lazy" decoding="async"/>
+    </span></p><p>Now the Layer is added and ready to use. Lastly let&#x27;s rename it so that it will be easy to reference in the storymap, I&#x27;m renaming it back to the dataset name, or <code>blocks-joined-trees-um</code>.</p><h4>Adding and Styling Another dataset</h4><p>Repeat the steps above but for your <code>2015_Street_Tree_Census_subset_um.geojson</code> dataset. Instead of choosing <code>Style across data range</code> for color, we will select a single color and <code>Style across data range</code> for <code>Radius</code>, and use the <code>tree_dbh</code> variable.</p><p>This time, the default values mapbox will give us when adding stops will be way too large, on account of an outlier in the dataset. Reference your QGIS project for good stops, for me that was <code>2.615</code>, <code>6.444</code>, <code>9.379</code>, <code>15.036,</code> and <code>26.000</code>. For my <code>size</code> I used 1 to 5 px.</p><p>Lastly, rename the layer so that it is easy to type, I did <code>2015-street-tree-census-subset</code>, and move the layer so that it is below labels but above road geometries.</p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:800px">
+      <span class="gatsby-resp-image-background-image" style="padding-bottom:77%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADdUlEQVQ4y12T7U9bZRjGz//lNz/5yRg14kumRGNiUGYyshgWp0F8S7aAOOYGccpCFLKuBJExEQZUnFCgtLT00NLRjdKWnva89eX09LS0P/M8M/vgk9x5zkvyu6/7up5HCYajRNUke2qCWOKQxKM0wXCEtY0gG6Ewm6Ewkbgq/6mpI3Zj+yyurLK0FmA5EGB5LcCDv9a5t7iEb96P8jhboGjY2FWHs3abs3aH3cQxgXCKjGZSNAzyxRJWpUqj2cK0bSKxGPFEgoNk8mkdJrnr87N9tIFSMi1yWol8Ucewy9TqLrHHSU51A8OuSFDNdSnXHLkXiiW2d8Ps7e9LcFRVWXmwyvjkGJ9d/RTFdT2sckWWLVR4Hnm9gNtwJVy3LDTDoOI41BseeU0jHI0SjceJqnHCkT0uDlziK9+XhI6DKOuxXbZjh+zEU4QTR6RzGqZdoVytUXXqaLohm3nNlqy8VpRAoTCRSjFx6zbnhnsZXBxkavEXlEe5LOmTU57kNVkF3SKVTktlVcdBNy28ZhOxOp0OhVLpGVBVD/h4tJ+XJt5gMv4zff0XUOxKDU03McsVXK9B6+yM42xWgoRC3TSlDQLWbnekh6HoHon4If7wPC/PnuOT5Yv8GBnj/skcymnJ4EmugNhFAK7nIYISSio1h5Jh4tRd2hLYplD8b+T4Pt0LvXx0/zyzqp8boVFGNodRBES3bOlTvdGQ4wmYWS5LhSXDoNVq0ekggfmihhpLcHvrDi/OdDGwehnfwRRzR36uBb9DKRoWx3mhUMeqVOR4wj8BFMmK5AVYBNIBSrrJxs4W7y2cZ3B9gOn4JAuZWZYz9+j540MU4d/JqUa5VpPjNrwm2YJIuizPnV2tyRKpu00PU7MYWrvBK9NvMv7PD/jVOzzMrXAzNMo7cx+IUKoYliVHFupEKOlMllxBkx4Kb3PFElmtSKPRIl3K8Prv79M90831ze/xxae5Fhyld6mPrpnup6Fk8pocW3gpVMrbUa9LYEE35Xul7kAL/s5u89zk83wd+IKR4BCXlvt5baqHF359i3fne1DchofjurJEIEKh+CaOkLhummHKRnatCm3YyGzR5evi89XLjGwOceXhN1z4s49X777NWGQMhf8tcd4ct/GsiUhelHiW6ss2yWySifBPDAevcHPnOlc3v2UiOs5vsRn+BdJLHT3x4yReAAAAAElFTkSuQmCC&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="TREESTYLE" title="TREESTYLE" src="/methods-in-spatial-research-sp2023/static/5d8ada0585398502215da9306304555f/5a190/webmap_2_08.png" srcSet="/methods-in-spatial-research-sp2023/static/5d8ada0585398502215da9306304555f/772e8/webmap_2_08.png 200w,/methods-in-spatial-research-sp2023/static/5d8ada0585398502215da9306304555f/e17e5/webmap_2_08.png 400w,/methods-in-spatial-research-sp2023/static/5d8ada0585398502215da9306304555f/5a190/webmap_2_08.png 800w,/methods-in-spatial-research-sp2023/static/5d8ada0585398502215da9306304555f/966a0/webmap_2_08.png 944w" sizes="(max-width: 800px) 100vw, 800px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0" loading="lazy" decoding="async"/>
+    </span></p><p>Make sure to hit <code>Publish</code> after you&#x27;re finished with that. Okay, we&#x27;re done with Mapbox Studio! Back to our text editor. </p><h2>Making a storymap</h2><h4>Step 1: Finding a Story</h4><p>This is probably the hardest part, and unfortunately not one that is possible for me to complete in the tutorial. For demo purposes, I&#x27;ll tell a story about trees in uptown nyc. There are a lot of trees all over the world, so I think I&#x27;ll start out at global scale, zoom in, and then turn on data layers one at a time. (Please make a story better than this.)</p><p>Now that I have my title, I&#x27;ll start by editing the titles and bylines. In my <code>config.js</code> this is everything above <code>chapters</code>, which we&#x27;ll get to next. This is also where global settings for the story are defined and while this template doesn&#x27;t have all it has some, so pay attention to some of those, like <code>showMarkers</code>, for example. I set that to <code>false</code> because I think it is distracting, while I set <code>use3dTerrain</code> to <code>true</code>.</p><pre><code class="language-javascript">var config = {
+    style: &#x27;mapbox://styles/adamvosburgh/ckzm6ymoc001y15s707imeig0&#x27;,
+    accessToken: &#x27;pk.eyJ1IjoiYWRhbXZvc2J1cmdoIiwiYSI6ImNrOGE5MDhudzAzcHozbW82cTRnY201ZWEifQ.SyIq-l5sw9Ew6mGRLgfp1w&#x27;,
+    showMarkers: false,
+    markerColor: &#x27;#3FB1CE&#x27;,
+    theme: &#x27;light&#x27;,
+    use3dTerrain: true,
+    title: &#x27;NYC Street Trees&#x27;,
+    subtitle: &#x27;A Tale of Many Trees&#x27;,
+    byline: &#x27;By Adam Vosburgh&#x27;,
+    footer: &#x27;Source: source citations, etc.&#x27;,
+</code></pre><h4>Step 2: Adding Chapters</h4><p><code>Chapters</code> are the manner by which you tell mapbox what information to show depending on how far a reader has scrolled. Every chapter has an <code>id</code> which must be unique, a camera (in the form of location/zoom/pitch,) and an <code>onChapterEnter</code> / `onChapterExit&#x27; event. Aside from these, there are lots of options that you may or may not need (some of which are included in the template), but those are the core. </p><p>Here are my chapters: </p><pre><code class="language-javascript"> chapters: [
+        {
+            id: &#x27;chapter-1&#x27;,
+            alignment: &#x27;left&#x27;,
+            hidden: false,
+            title: &#x27;Trees of the World&#x27;,
+            image: &#x27;./img/tree.png&#x27;,
+            description: &quot;There are a lot of trees in the world. Here is a picture of one of them. Let&#x27;s look at one place in particular which has a lot of trees, but is not necessarily known for that.&quot;,
+            location: {
+                center: [0, 0],
+                zoom: 2,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [
+                {
+                    layer: &#x27;blocks-joined-trees-um&#x27;,
+                    opacity: 0,
+                    duration: 3000,
+                },
+                {
+                    layer: &#x27;2015-street-tree-census-subset&#x27;,
+                    opacity: 0,
+                    duration: 3000,
+                }
+            ],
+            onChapterExit: []
+        },
+        {
+            id: &#x27;chapter-2&#x27;,
+            alignment: &#x27;left&#x27;,
+            hidden: false,
+            title: &#x27;New York City&#x27;,
+            image: &#x27;./img/legend-tree.png&#x27;,
+            description: &#x27;New York City has lots of street trees. In fact, trees are a super important part of NYCs resilient infrastructure, saving millions a year in drainage costs and providing heat relief to blocks in the summer. This dataset shown here is from the 2015 NYC Street Tree Census - where volunteers measure mark and identify trees.&#x27;,
+            location: {
+                center: [-73.94834, 40.80899],
+                zoom: 15,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [
+                {
+                    layer: &#x27;2015-street-tree-census-subset&#x27;,
+                    opacity: 1,
+                    duration: 3000,
+                },
+            ],
+            onChapterExit: []
+        },
+        {
+            id: &#x27;chapter-3&#x27;,
+            alignment: &#x27;left&#x27;,
+            hidden: false,
+            title: &#x27;Not So Many Trees&#x27;,
+            description: &#x27;In this dataset, there are areas with not so many trees...&#x27;,
+            location: {
+                center: [-73.94834, 40.80899],
+                zoom: 18.75,
+                pitch: 60,
+                bearing: -60
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [],
+            onChapterExit: []
+        },
+        {
+            id: &#x27;chapter-4&#x27;,
+            alignment: &#x27;right&#x27;,
+            hidden: false,
+            title: &#x27;Many Trees&#x27;,
+            description: &#x27;And areas with lots of trees!&#x27;,
+            location: {
+                center: [-73.96059, 40.80322],
+                zoom: 19,
+                pitch: 60,
+                bearing: 15
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [
+                {
+                    layer: &#x27;blocks-joined-trees-um&#x27;,
+                    opacity: 0,
+                    duration: 3000,
+                },
+                {
+                    layer: &#x27;2015-street-tree-census-subset&#x27;,
+                    opacity: 1,
+                }
+            ],
+            onChapterExit: []
+        },
+        {
+            id: &#x27;chapter-5&#x27;,
+            alignment: &#x27;right&#x27;,
+            hidden: false,
+            title: &#x27;Block Summary&#x27;,
+            image: &#x27;./img/legend-block.png&#x27;,
+            description: &#x27;Summarizing the tree data by block also allows us to view larger trends in tree cover in NYC. Greener blocks have higher average street tree diameters than lighter blocks.&#x27;,
+            location: {
+                center: [-73.94834, 40.80899],
+                zoom: 15,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [
+                {
+                    layer: &#x27;blocks-joined-trees-um&#x27;,
+                    opacity: 1,
+                    duration: 3000,
+                },
+                {
+                    layer: &#x27;2015-street-tree-census-subset&#x27;,
+                    opacity: 1,
+                }
+            ],
+            onChapterExit: []
+        },
+        {
+            id: &#x27;chapter-6&#x27;,
+            alignment: &#x27;left&#x27;,
+            hidden: false,
+            title: &#x27;The End&#x27;,
+            description: &#x27;Tutorial Created for Methods in Spatial Research, Spring 2022.&#x27;,
+            location: {
+                center: [-73.96089, 40.80827],
+                zoom: 19,
+                pitch: 30,
+                bearing: 115
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: true,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [
+                {
+                    layer: &#x27;blocks-joined-trees-um&#x27;,
+                    opacity: 0,
+                    duration: 3000,
+                },
+                {
+                    layer: &#x27;2015-street-tree-census-subset&#x27;,
+                    opacity: 0,
+                    duration: 3000,
+                }
+            ],
+            onChapterExit: []
+        }
+    ]
+};
+</code></pre><p>Once you have that in and hit save, you should be able to read my story in it&#x27;s entirety, it should look like <a href="https://akv2118.github.io/webmap_2_storytelling/">this</a>. If you still don&#x27;t see anything, make sure that you hit <code>publish</code> on your map in Mapbox Studio, and then even after that it can take a few minutes to show up.</p><p>I&#x27;ll note a few things going on here:</p><ul><li>Layers are added to the map using the Layer Name that we defined in Mapbox Studio. That is all we need to reference the data and its respective styling.</li><li>All of the work is being done by <code>onChapterEnter</code>, and setting the opactiy for that layer. I personally only use <code>onChapterExit</code> if I am switching a dataset out for every chapter. My approach is to define the opacity for a layer everytime that it changes - layers won&#x27;t change unless you tell them to. </li><li>One thing you need to think about is what happens when your reader scrolls back up too - you&#x27;ll want to plan for that so they don&#x27;t break the site.</li><li>A really useful tool for setting up the &#x27;camera&#x27; is the <a href="https://demos.mapbox.com/location-helper/">Mapbox Location Helper</a>.</li><li>To get the images I added to work, you&#x27;ll need to add them to your repo. I placed them in a folder called &#x27;img&#x27;. Here is the <a href="https://drive.google.com/drive/folders/1y5rgHK8I6ZIICwJhCx4Ei7qADSf9Msdx?usp=sharing">download link</a>.</li><li>While you can add legends directly onto the map in html, the chapter image field is a really useful place to put legends.</li></ul><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:800px">
+      <span class="gatsby-resp-image-background-image" style="padding-bottom:72%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADn0lEQVQ4yyWT209aBwDGz7+27mmJj0uWNFmaXfrStQ9bt2UPe9iadFubbt3StRY3FS1ewMNVOEdQkFKqVG6H+zncRbCAiAoVRYu/Rff9AV/y/fL7hI++/YRJzzihwibarsofU4/46t5trFkL3m0Zu2bm39QEYtLErDLDw1cPmI5O4UjZ8GmrOLMO5LKd4mGOTDuJ8MPCz5jS85hXzSiVGNHOFqlWAmvSjCtvYyY1SbASYE1dRdKWmU/M4cjaEBNG5KyEOydjKyzhrrrI7acR/ok+w1OWGRsb49qH11CqMeK7Eba2N7FkRGay02jtHDOKnomIjkDFj7/iJVaPEK5FeF0PUj4o4K6sUGwXEQxZPW8aG6ymZR7pHqLVcmjtLMFSgJW8hLfkYb28hj49iUUVmVMMZJpp+r0+3cN9hudDTs9PGZwNOHp3hODIW1mtSPhqHnRL44hRE4lmnGI7T3Y3Ra6ZxqQZ+WXzAebMEk9CfxGsBhmNRrQ6TbSiRnm7TL1Zp9luIhjVOcTcIta4hc+mb/P1yvfoQuOEKhtk3qZQWxmC9XWehp/hyNh4EdeTqCc4PR/S7XdpNBvsdducvR8yGAwQ5Jodc96IM27j/sbvXJdu8zw0jimxiL/kI1INo+3lUBoxVgpOZNVJca/A6dkp+yd7tHtthu+HjC7e0+v3ENx1B/7qGi7FwQ3nHX7038OWEVkveFnRXMwoU7zZ2aTQ0ojWwsiqi1gjysXognxXo9apMTgdcH5xxsnwBMHbkPGXPPwZeMIX0jcsxA1IuWV8hTX8JS/rpTV8xVWCxZekd5NsVIIU2wUuRiO23ioUmiX6/R5noyG9dz0E344bS8bITekuvwYeYo4bkTMu3KqMpP5fbM4t4i5dzpUwJuepdspcJlAOk23k6b/rcTI6YTAcIIR2/TxVdFxfvoUpscBMdIpX1XVcmgMxZWQpZcSQ1GPJLjER1mHRjBQOVI6Pj+kcdTjsH9I77nHQ79I7PkL46fVvfC7d4brjFpOhCexp6xW7S/jWtIUXMT3G1DwrqsxcYhZPzUnhIEej02C7Vb1Sp7XfpNVtsdtpIHww+ynXFj/mpnwXZ9KORRFZjBlY0zxXmlwyXVbtiCkTYtLIQnoWe17EnBSJ7oSJ7Lwh1toi101R7GoIX0rfMWa9wZNNHYG8F0P0Bc83nl391JV18DLv4+/IUx5vPsakLGJWRObjBvTKNC9LPryqB6noQJ+cvDrHfyPenJWDgBM5AAAAAElFTkSuQmCC&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="STORYMAP" title="STORYMAP" src="/methods-in-spatial-research-sp2023/static/b2c0be950048ac3866e117f026927b5d/5a190/webmap_2_09.png" srcSet="/methods-in-spatial-research-sp2023/static/b2c0be950048ac3866e117f026927b5d/772e8/webmap_2_09.png 200w,/methods-in-spatial-research-sp2023/static/b2c0be950048ac3866e117f026927b5d/e17e5/webmap_2_09.png 400w,/methods-in-spatial-research-sp2023/static/b2c0be950048ac3866e117f026927b5d/5a190/webmap_2_09.png 800w,/methods-in-spatial-research-sp2023/static/b2c0be950048ac3866e117f026927b5d/c1b63/webmap_2_09.png 1200w,/methods-in-spatial-research-sp2023/static/b2c0be950048ac3866e117f026927b5d/7c5b4/webmap_2_09.png 1309w" sizes="(max-width: 800px) 100vw, 800px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0" loading="lazy" decoding="async"/>
+    </span></p><h4>Step 3: Fine-Tune your Story Map</h4><p>Now that our map is up and running, we&#x27;ll want to go back and spend some time styling our various html elements. This can all be done in your <code>index.html</code>, spefically under the <code>&lt;style&gt;</code> tag, where the css for each element is located.</p><p>If you&#x27;re not familiar with css, don&#x27;t stress about it too much, but if you would like to change anything in particular, you can figure out the vast majority of what you need to change just by googling around for it. Even the best of web developers look up whether text color is <code>color</code> or <code>text-color</code> on a daily basis. A classic resource for webdev fundamentals is <a href="https://www.w3schools.com/css/">w3 schools</a>.</p><h2>The End</h2><p>Congratulations! You now have a story map. Just in case there is anything you&#x27;re troubleshooting, here is a <a href="https://akv2118.github.io/webmap_2_storytelling/">live demo</a> of what it should look like, and here&#x27;s the <code>config.js</code> in it&#x27;s entiretly: </p><pre><code class="language-javascript">var config = {
+    style: &#x27;mapbox://styles/adamvosburgh/ckzm6ymoc001y15s707imeig0&#x27;,
+    accessToken: &#x27;pk.eyJ1IjoiYWRhbXZvc2J1cmdoIiwiYSI6ImNrOGE5MDhudzAzcHozbW82cTRnY201ZWEifQ.SyIq-l5sw9Ew6mGRLgfp1w&#x27;,
+    showMarkers: false,
+    markerColor: &#x27;#3FB1CE&#x27;,
+    theme: &#x27;light&#x27;,
+    use3dTerrain: true,
+    title: &#x27;NYC Street Trees&#x27;,
+    subtitle: &#x27;A Tale of Many Trees&#x27;,
+    byline: &#x27;By Adam Vosburgh&#x27;,
+    footer: &#x27;Source: source citations, etc.&#x27;,
+    chapters: [
+        {
+            id: &#x27;chapter-1&#x27;,
+            alignment: &#x27;left&#x27;,
+            hidden: false,
+            title: &#x27;Trees of the World&#x27;,
+            image: &#x27;./img/tree.png&#x27;,
+            description: &quot;There are a lot of trees in the world. Here is a picture of one of them. Let&#x27;s look at one place in particular which has a lot of trees, but is not necessarily known for that.&quot;,
+            location: {
+                center: [0, 0],
+                zoom: 2,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [
+                {
+                    layer: &#x27;blocks-joined-trees-um&#x27;,
+                    opacity: 0,
+                    duration: 3000,
+                },
+                {
+                    layer: &#x27;2015-street-tree-census-subset&#x27;,
+                    opacity: 0,
+                    duration: 3000,
+                }
+            ],
+            onChapterExit: []
+        },
+        {
+            id: &#x27;chapter-2&#x27;,
+            alignment: &#x27;left&#x27;,
+            hidden: false,
+            title: &#x27;New York City&#x27;,
+            image: &#x27;./img/legend-tree.png&#x27;,
+            description: &#x27;New York City has lots of street trees. In fact, trees are a super important part of NYCs resilient infrastructure, saving millions a year in drainage costs and providing heat relief to blocks in the summer. This dataset shown here is from the 2015 NYC Street Tree Census - where volunteers measure mark and identify trees.&#x27;,
+            location: {
+                center: [-73.94834, 40.80899],
+                zoom: 15,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [
+                {
+                    layer: &#x27;2015-street-tree-census-subset&#x27;,
+                    opacity: 1,
+                    duration: 3000,
+                },
+            ],
+            onChapterExit: []
+        },
+        {
+            id: &#x27;chapter-3&#x27;,
+            alignment: &#x27;left&#x27;,
+            hidden: false,
+            title: &#x27;Not So Many Trees&#x27;,
+            description: &#x27;In this dataset, there are areas with not so many trees...&#x27;,
+            location: {
+                center: [-73.94834, 40.80899],
+                zoom: 18.75,
+                pitch: 60,
+                bearing: -60
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [],
+            onChapterExit: []
+        },
+        {
+            id: &#x27;chapter-4&#x27;,
+            alignment: &#x27;right&#x27;,
+            hidden: false,
+            title: &#x27;Many Trees&#x27;,
+            description: &#x27;And areas with lots of trees!&#x27;,
+            location: {
+                center: [-73.96059, 40.80322],
+                zoom: 19,
+                pitch: 60,
+                bearing: 15
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [
+                {
+                    layer: &#x27;blocks-joined-trees-um&#x27;,
+                    opacity: 0,
+                    duration: 3000,
+                },
+                {
+                    layer: &#x27;2015-street-tree-census-subset&#x27;,
+                    opacity: 1,
+                }
+            ],
+            onChapterExit: []
+        },
+        {
+            id: &#x27;chapter-5&#x27;,
+            alignment: &#x27;right&#x27;,
+            hidden: false,
+            title: &#x27;Block Summary&#x27;,
+            image: &#x27;./img/legend-block.png&#x27;,
+            description: &#x27;Summarizing the tree data by block also allows us to view larger trends in tree cover in NYC. Greener blocks have higher average street tree diameters than lighter blocks.&#x27;,
+            location: {
+                center: [-73.94834, 40.80899],
+                zoom: 15,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: false,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [
+                {
+                    layer: &#x27;blocks-joined-trees-um&#x27;,
+                    opacity: 1,
+                    duration: 3000,
+                },
+                {
+                    layer: &#x27;2015-street-tree-census-subset&#x27;,
+                    opacity: 1,
+                }
+            ],
+            onChapterExit: []
+        },
+        {
+            id: &#x27;chapter-6&#x27;,
+            alignment: &#x27;left&#x27;,
+            hidden: false,
+            title: &#x27;The End&#x27;,
+            description: &#x27;Tutorial Created for Methods in Spatial Research, Spring 2022.&#x27;,
+            location: {
+                center: [-73.96089, 40.80827],
+                zoom: 19,
+                pitch: 30,
+                bearing: 115
+            },
+            mapAnimation: &#x27;flyTo&#x27;,
+            rotateAnimation: true,
+            callback: &#x27;&#x27;,
+            onChapterEnter: [
+                {
+                    layer: &#x27;blocks-joined-trees-um&#x27;,
+                    opacity: 0,
+                    duration: 3000,
+                },
+                {
+                    layer: &#x27;2015-street-tree-census-subset&#x27;,
+                    opacity: 0,
+                    duration: 3000,
+                }
+            ],
+            onChapterExit: []
+        }
+    ]
+};
+</code></pre><h4>Looking forward to seeing what you make!</h4><hr/><p>Tutorial by Adam Vosburgh, Spring 2022.<br/>
+<!-- -->Written for Methods in Spatial Research, Spring 2022.</p></main></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/assignments/webmap-2/";window.___webpackCompilationHash="c5f4ce524ad9b1d80040";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-b8a71217ec26e1adde20.js"],"app":["/app-294448eaa7dac3037b08.js"],"component---src-pages-404-js":["/component---src-pages-404-js-f5d252aa1c85e7c46617.js"],"component---src-pages-assignments-index-js":["/component---src-pages-assignments-index-js-27ae12e4397d3a1475f8.js"],"component---src-pages-assignments-mdx-slug-js":["/component---src-pages-assignments-mdx-slug-js-72dfe4a85c1158d51fa0.js"],"component---src-pages-index-js":["/component---src-pages-index-js-0701913109c1f36b55d8.js"],"component---src-pages-resources-index-js":["/component---src-pages-resources-index-js-5290a8120d36e5ea9011.js"],"component---src-pages-resources-mdx-slug-js":["/component---src-pages-resources-mdx-slug-js-f8e0b13b2c5d20a25532.js"],"component---src-pages-tutorials-index-js":["/component---src-pages-tutorials-index-js-987e282ada18df318d89.js"],"component---src-pages-tutorials-mdx-slug-js":["/component---src-pages-tutorials-mdx-slug-js-b7f9ffdef2357e999153.js"]};/*]]>*/</script><script src="/methods-in-spatial-research-sp2023/polyfill-b8a71217ec26e1adde20.js" nomodule=""></script><script src="/methods-in-spatial-research-sp2023/app-294448eaa7dac3037b08.js" async=""></script><script src="/methods-in-spatial-research-sp2023/framework-d1694313a2797097d13d.js" async=""></script><script src="/methods-in-spatial-research-sp2023/webpack-runtime-0f8e70469ba39aaefaab.js" async=""></script></body></html>
