@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: "/methods-in-spatial-research-sp2022",
+  pathPrefix: "/methods-in-spatial-research-sp2023",
   siteMetadata: {
     title: `A4407-sp2022`,
     siteUrl: `https://sp2022.org`,
