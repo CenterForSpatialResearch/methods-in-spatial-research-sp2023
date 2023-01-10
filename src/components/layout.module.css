@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@400&display=swap');
+
+.container {
+    margin: auto;
+    max-width: 800px;
+    font-family: 'Karla', sans-serif;
+}
+
+.heading {
+color: #030303;
+}
+
+.nav-links {
+display: flex;
+list-style: none;
+padding-left: 0;
+}
+
+.nav-link-item {
+padding-right: 2rem;
+}
+
+.nav-link-text {
+color: black;
+}
+
+
+.site-title {
+    font-size: 1rem;
+    color: black;
+    font-weight: 700;
+    margin: 2rem 0;
+  }
+
+a {
+    color: black
+}
+
+a:hover {
+    background-color: #d9ff00
+}
+
+.caption {
+    font-size: .25rem;
+}
+
+/* code {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 90%;
+    font-feature-settings: "clig" 0, "calt" 0;
+    background: rgb(233, 231, 231);
+    background: rgb(233, 231, 231);
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+} */
