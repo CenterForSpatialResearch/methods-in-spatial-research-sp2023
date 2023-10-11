@@ -17,7 +17,7 @@ Friday 9-11, session A
 Ware Lounge
 
 Adam Vosburgh 
-akv2118 (at) columbia.edu  
+adam (dot) vosburgh (at) columbia.edu  
 office hours by appointment, sign up [here](https://calendly.com/akv2118/a4407-office-hours)
 
 ## Description
